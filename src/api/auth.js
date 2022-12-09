@@ -13,4 +13,10 @@ function loginUser(userData) {
   return instance.post('login', userData);
 }
 
-export { registerUser, loginUser };
+function reserveTicket(userData) {
+  console.log('axios Call!');
+  // srt-test return instance.post('login', userData);
+  return instance.post('reserve', userData);
+}
+
+export { registerUser, loginUser, reserveTicket };

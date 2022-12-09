@@ -5,12 +5,14 @@ function createInstance() {
   return axios.create({
     // srt-test baseURL: process.env.VUE_APP_API_URL,
     baseURL: process.env.VUE_APP_API_URL,
+    withCredentials: true,
   });
 }
 
 function createIntanceWithAuth(url) {
   const instance = axios.create({
     baseURL: `${process.env.VUE_APP_API_URL}${url}`,
+    withCredentials: true,
   });
   return setInterceptors(instance);
 }

@@ -22,6 +22,14 @@
         >
           로그인
         </button>
+        <button
+          style="float: right"
+          class="btn"
+          type="button"
+          v-on:click="reserveTicket"
+        >
+          SRT예매
+        </button>
       </form>
       <p class="log">{{ logMessage }}</p>
     </div>
@@ -66,7 +74,31 @@ export default {
         // this.logMessage = `${data.user.username} 님 환영합니다.`;
       } catch (error) {
         console.log(error.response);
-        this.logMessage = error.response.data;
+      } finally {
+        this.initForm();
+      }
+    },
+    async reserveTicket() {
+      console.log('reserve-ticket');
+      try {
+        const userData = {
+          // srt-test username: this.username,
+          // srt-test password: this.password,
+          auto: 'Y',
+          check: 'Y',
+          page: 'menu',
+          deviceKey: '',
+          customerYn: '',
+          login_referer: 'https://app.srail.or.kr=443/main/main.do',
+          srchDvCd: '2',
+          srchDvNm: 'aimstarter01@gmail.com',
+          hmpgPwdCphd: '7641955munha!',
+        };
+        console.log('reserve-ticket1');
+        const response = await this.$store.dispatch('RESERVE', userData);
+        console.log('response:', response);
+      } catch (error) {
+        console.log(error.response);
       } finally {
         this.initForm();
       }

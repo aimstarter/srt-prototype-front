@@ -5,7 +5,7 @@ import {
   // srt-test saveAuthToCookie,
   // srt-test saveUserToCookie,
 } from '@/utils/cookies';
-import { loginUser } from '@/api/auth';
+import { loginUser, reserveTicket } from '@/api/auth';
 
 const store = new Vuex.Store({
   state: {
@@ -34,7 +34,18 @@ const store = new Vuex.Store({
   actions: {
     async LOGIN(userData) {
       const { data } = await loginUser(userData);
-      console.log('data:', data);
+      console.log('data111:', data);
+
+      // srt-test commit('setToken', data.token);
+      // srt-test commit('setUsername', data.user.username);
+      // srt-test saveAuthToCookie(data.token);
+      // srt-test saveUserToCookie(data.user.username);
+
+      return data;
+    },
+    async RESERVE(userData) {
+      console.log('data11:', userData);
+      const { data } = await reserveTicket(userData);
 
       // srt-test commit('setToken', data.token);
       // srt-test commit('setUsername', data.user.username);
